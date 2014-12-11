@@ -6,6 +6,9 @@ Please check that the answer still applies to the version of CPLEX you are using
 
 Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 
+1. [How to limit cut generation to root node only?](#how-to-limit-cut-generation-to-root-node-only)
+2. [How to identify different types of fathomed nodes?](#how-to-identify-different-types-of-fathomed-nodes)
+
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
 
