@@ -8,6 +8,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 
 1. [How to limit cut generation to root node only?](#how-to-limit-cut-generation-to-root-node-only)
 2. [How to identify different types of fathomed nodes?](#how-to-identify-different-types-of-fathomed-nodes)
+3. [How to add information to a node, but without having to manually branch as CPLEX?](#how-to-add-information-to-a-node-but-not-having-to-manually-branch-as-cplex)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -32,3 +33,7 @@ I want to identify different types of nodes in the B&B tree:
 * Integer feasible nodes can be detected in the branch callback by testing that CPLEX would not create any branches.
 
 Answer by DanielJunglas ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=ac79e5b1-97c6-454b-9614-48f92afe83bb&ps=25)).
+
+### How to add information to a node, but without having to manually branch as CPLEX?
+**A: ** In a branch callback use the `CPXbranchcallbackbranchasCPLEX` function and just add your node handle to
+the node.
