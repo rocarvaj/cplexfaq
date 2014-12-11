@@ -35,5 +35,5 @@ I want to identify different types of nodes in the B&B tree:
 Answer by DanielJunglas ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=ac79e5b1-97c6-454b-9614-48f92afe83bb&ps=25)).
 
 ### How to add information to a node, but without having to manually branch as CPLEX?
-**A: ** In a branch callback use the `CPXbranchcallbackbranchasCPLEX` function and just add your node handle to
+**A:** In a branch callback use the `CPXbranchcallbackbranchasCPLEX` function and just add your node handle to
 the node.
