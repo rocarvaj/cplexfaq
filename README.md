@@ -18,6 +18,11 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 
 Answer by AnirudhSubramanyam ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=cd574f99-5f7f-4bd6-94c4-e5db4c420389&ps=25)).
 
+**A2:** A way to do this without callbacks is the following:
+
+1. Set the node limit to 1 and call solve(). This will process the root node with default cut settings (or whatever cut settings you specified).
+2. Clear the node limit and disable all cuts. Then call solve() again. This should proceed right where the previous step left off (right after the root node) and should not try to separate any cuts anymore.
+
 ### How to identify different types of fathomed nodes?
 I want to identify different types of nodes in the B&B tree:
 
