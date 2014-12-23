@@ -9,6 +9,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 1. [How to limit cut generation to root node only?](#how-to-limit-cut-generation-to-root-node-only)
 2. [How to identify different types of fathomed nodes?](#how-to-identify-different-types-of-fathomed-nodes)
 3. [How to add information to a node, but without having to manually branch as CPLEX?](#how-to-add-information-to-a-node-but-not-having-to-manually-branch-as-cplex)
+4. [How can I turn off all presolve options for MIP?](#how-can-i-turn-off-all-presolve-options-for-mip)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -42,3 +43,10 @@ Answer by DanielJunglas ([link](https://www.ibm.com/developerworks/community/for
 ### How to add information to a node, but without having to manually branch as CPLEX?
 **A:** In a branch callback use the `CPXbranchcallbackbranchasCPLEX` function and just add your node handle to
 the node.
+
+### How can I turn off all presolve options for MIP?
+**A:** You should turn off presolve (`CPX_PARAM_PREIND`, `CPX_PARAM_RELAXPREIND` and `CPX_PARAM_PRSLVND`), probing (`CPX_PARAM_PROBE`), cplex cuts (`CPX_PARAM_EACHCUTLIM` and `CPX_PARAM_FRACCUTS` and `CPX_PARAM_CUTSFACTOR`) and cplex heuristics (`CPX_PARAM_HEURFREQ`) to use CPLEX as a "pure" LP solver for the purposes of branch and bound.
+
+Answer by AnirudhSubramanyam ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=bde0e565-e4a7-4d74-bf90-001a8829f2d6&ps=25))
+
+*Note:* This might not be a full answer.
