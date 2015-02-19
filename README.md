@@ -10,6 +10,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 2. [How to identify different types of fathomed nodes?](#how-to-identify-different-types-of-fathomed-nodes)
 3. [How to add information to a node, but without having to manually branch as CPLEX?](#how-to-add-information-to-a-node-but-not-having-to-manually-branch-as-cplex)
 4. [How can I turn off all presolve options for MIP?](#how-can-i-turn-off-all-presolve-options-for-mip)
+5. [How to perform customized strong branching?](#how-to-perform-customized-strong-branching)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -50,3 +51,16 @@ the node.
 Answer by AnirudhSubramanyam ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=bde0e565-e4a7-4d74-bf90-001a8829f2d6&ps=25))
 
 *Note:* This might not be a full answer.
+
+### How to perform customized strong branching?
+**A:** In a C API branch callback, you would query the nodelp with `CPXgetcallbacknodelp()`. Then, query the optimal basis and dual norms with `CPXgetbasednorms()`. Then do:
+
+1. load in the basis and dual norms with `CPXcopybasednorms()`,
+2. add the additional branching constraints with `CPXaddrows()`,
+3. solve the LP with `CPXdualopt()` and query solution information with `CPXsolution()`,
+4. remove the branching constraints with `CPXdelrows()`,
+5. repeat 1-4 until all branching candidates have been evaluated,
+6. load in the basis and dual norms with `CPXcopybasednorms()`,
+7. call `CPXdualopt()` to restore the internal LP state that CPLEX needs to proceed.
+
+I think this should work, but maybe CPLEX does not like you to work directly on the nodelp. If this is the case, then you just need to copy the nodelp locally and work on this local copy instead (which then saves you steps 6 and 7).
