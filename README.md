@@ -11,6 +11,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 3. [How to add information to a node, but without having to manually branch as CPLEX?](#how-to-add-information-to-a-node-but-not-having-to-manually-branch-as-cplex)
 4. [How can I turn off all presolve options for MIP?](#how-can-i-turn-off-all-presolve-options-for-mip)
 5. [How to perform customized strong branching?](#how-to-perform-customized-strong-branching)
+6. [How are pseudocosts initialized in CPLEX?](#how-are-pseudocosts-initialized-in-cplex)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -64,3 +65,10 @@ Answer by AnirudhSubramanyam ([link](https://www.ibm.com/developerworks/communit
 7. call `CPXdualopt()` to restore the internal LP state that CPLEX needs to proceed.
 
 I think this should work, but maybe CPLEX does not like you to work directly on the nodelp. If this is the case, then you just need to copy the nodelp locally and work on this local copy instead (which then saves you steps 6 and 7).
+
+### How are pseudocosts initialized in CPLEX?
+**Q:** When calling `CPXgetcallbackpseudocosts()` just before branching at the root note, I see that the pseudocosts are already initialized. Are they initialized using strong branching?
+
+**A:** With the default variableselection, they are indeed initialized using strong branching. Even if there is a user branch callback in place.
+
+Answer by Ed Klotz ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=b9f3d077-b2ab-4a70-b01c-6412a4bd3a95&ps=25)).
