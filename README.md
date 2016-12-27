@@ -34,6 +34,7 @@ I want to identify different types of nodes in the B&B tree:
 * Infeasible
 
 **A:** I think you will have to use node user data with a combination of callbacks:
+
 * In a branch callback create the branches that CPLEX would create but attach a user data object to each node (function CPXbranchcallbackbranchasCPLEX is a convenient way to do that).
 * In a node select callback just select the node that CPLEX would suggest but change the node's user data to reflect that the node has been selected (functions CPXcallbacksetuserhandle and CPXcallbacksetnodeuserhandle can be used to change a node's user object).
 * In a solve callback just use the default solving strategy but update the node's user object to indicate that the solve callback was invoked. Nodes that are LP infeasible can be detected in the solve callback.
