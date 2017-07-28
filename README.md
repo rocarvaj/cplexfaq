@@ -12,6 +12,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 4. [How can I turn off all presolve options for MIP?](#how-can-i-turn-off-all-presolve-options-for-mip)
 5. [How to perform customized strong branching?](#how-to-perform-customized-strong-branching)
 6. [How are pseudocosts initialized in CPLEX?](#how-are-pseudocosts-initialized-in-cplex)
+7. Deterministic behavior of CPLEX: ticks or seconds?
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -73,3 +74,21 @@ I think this should work, but maybe CPLEX does not like you to work directly on 
 **A:** With the default variableselection, they are indeed initialized using strong branching. Even if there is a user branch callback in place.
 
 Answer by Ed Klotz ([link](https://www.ibm.com/developerworks/community/forums/html/topic?id=b9f3d077-b2ab-4a70-b01c-6412a4bd3a95&ps=25)).
+
+### Deterministic behavior of CPLEX: ticks or seconds?
+[A post by Marc-André Carle](http://www.thequestforoptimality.com/deterministic-behavior-of-cplex-ticks-or-seconds/) on CPLEX deterministic ticks. He asks if:
+
+1. CPLEX will yield the same tick count when ran multiple times on the same computer;
+2. CPLEX will yield the same tick count when ran on different computers.
+
+Tobias Acheterberg posts a very clarifying comment:
+
+> Hi Marc-Andre,
+> 
+> the answers to your two experiments are “yes” for the first, and “no” for the second.
+> 
+> It is very typical for CPLEX workloads that the bottleneck for computations is the memory bus. If you have a cache miss, then the CPU has to wait very long to load the required data. Consequently, the deterministic ticks that CPLEX measures is basically the number of memory accesses that CPLEX performs (as a proxy for the number of cache misses). Yes: we have instrumented all of our code to count or estimate memory accesses. A lot of work but a big success as this does not only enable the deterministic time limit and deterministic parameter tuning (i.e., you tune parameters for a given set of models, and when you do the same again you will get exactly the same recommendations as in the first tuning session), but also lots of under-the-hood performance improvements.
+> 
+> For the deterministic time this means that two runs using the same CPLEX binary with the same settings (including that if the the “threads” parameter is still set to 0, then the machines must have the same number of cores) and the same data will produce the same deterministic time. This is independent on the load of the machine. If you have other jobs running in the background the wall-clock run-time can be significantly higher, but the deterministic time will not change. This is very useful for computational experiments, because it means that it is no longer necessary to have exclusive access to the machine. Moreover, it allows to conduct long running automated tuning sessions on machines that are used for other tasks as well.
+>
+> The fact that the wall-clock run-time of CPLEX is mostly determined by the number of cache misses means that the deterministic time is a very good proxy for wall-clock time. The ratio of wall-clock time to deterministic time depends of course on the hardware, but it is not very dependent on the input data. This allows to set reasonable deterministic time limits: just measure the deterministic/wall-clock time ratio on your machine for some reasonable CPLEX work loads and from then on use a deterministic time limit by multiplying your wall-clock time limit with the ratio that you observed. As a consequence, CPLEX users are able to produce algorithms that use limited time optimization runs as sub-procedure and that will still show deterministic behavior. And when those algorithms are run on faster hardware (of the same architecture), the algorithm will behave identically, except that it will run faster.
