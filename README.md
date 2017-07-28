@@ -12,7 +12,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 4. [How can I turn off all presolve options for MIP?](#how-can-i-turn-off-all-presolve-options-for-mip)
 5. [How to perform customized strong branching?](#how-to-perform-customized-strong-branching)
 6. [How are pseudocosts initialized in CPLEX?](#how-are-pseudocosts-initialized-in-cplex)
-7. Deterministic behavior of CPLEX: ticks or seconds?
+7. [Deterministic behavior of CPLEX: ticks or seconds?](#deterministic-behavior-of-cplex-ticks-or-seconds)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
