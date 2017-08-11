@@ -92,3 +92,48 @@ Tobias Acheterberg posts a very clarifying comment:
 > For the deterministic time this means that two runs using the same CPLEX binary with the same settings (including that if the the “threads” parameter is still set to 0, then the machines must have the same number of cores) and the same data will produce the same deterministic time. This is independent on the load of the machine. If you have other jobs running in the background the wall-clock run-time can be significantly higher, but the deterministic time will not change. This is very useful for computational experiments, because it means that it is no longer necessary to have exclusive access to the machine. Moreover, it allows to conduct long running automated tuning sessions on machines that are used for other tasks as well.
 >
 > The fact that the wall-clock run-time of CPLEX is mostly determined by the number of cache misses means that the deterministic time is a very good proxy for wall-clock time. The ratio of wall-clock time to deterministic time depends of course on the hardware, but it is not very dependent on the input data. This allows to set reasonable deterministic time limits: just measure the deterministic/wall-clock time ratio on your machine for some reasonable CPLEX work loads and from then on use a deterministic time limit by multiplying your wall-clock time limit with the ratio that you observed. As a consequence, CPLEX users are able to produce algorithms that use limited time optimization runs as sub-procedure and that will still show deterministic behavior. And when those algorithms are run on faster hardware (of the same architecture), the algorithm will behave identically, except that it will run faster.
+
+### Is there a book that describes the algorithms CPLEX uses?
+**A:** While there is no publication regarding the details of the implementations in CPLEX, the following publications contain plenty of useful information.
+
+
+**THE SIMPLEX ALGORITHM**
+* Bixby, Robert, Progress in Linear Programming. ORSA Journal on Computing, Volume 6, Number 1, Winter 1994. [Aspects of CPLEX implementation, with a good list of further references.]
+* Nazareth, Larry, Computer Solution of Linear Programs, Oxford University Press, 1987. [Good general reference.]
+* Wolfe, Philip, The Simplex Method for Quadratic Programming, Econometrica, Vol 27, No. 3, July 1959.
+* Cottle, Richard, ed. The Basic George B. Dantzig, Stanford University Press, 2003 [General reference on numerous topics, but specifically Ch. 21 for QP simplex method]
+
+
+**THE BARRIER METHOD**
+* Lustig, I.J., Marsten, R. and Shanno, D.F. (1994). Interior Point Methods for Linear Programming: Computational State of the Art, ORSA Journal on Computing, Volume 6(1), 1-14. [Overview of the implementation found in CPLEX.]
+
+
+**BRANCH AND BOUND**
+* Land, A. and Powell, S., Computer codes for problems of integer programming, in P.L. Hammer, E.L. Johnson, and B.H. Korte, editors, Discrete Optimization II, Annals of Discrete Mathematics Volume 5, North Holland, Amsterdam, 1979, pages 221-269.
+* Forrest, J., Hirst, J., and Tomlin J., Practical Solution of Large Mixed Integer Programming Problems with Umpire. Management Science, Volume 20, Number 5, January 1974, pages 736-772.
+* Hoffman, K.L. and Padberg, M., (1985) LP-Based Combinatorial Problem Solving. Annals of Operations Research Volume 4, pages 145-194.
+* Bixby, Robert E., Fenelon, Mary, Zonghao Gu, Rothberg, Ed, Wunderling, Roland, MIP: Theory and Practice Closing the Gap. In: M. J. D. Powell and S. Scholtes (eds.). System Modelling and Optimization: Methods, Theory and Applications. Kluwer. [Available in PDF format at MIPLIB - Mixed Integer Problem Library]
+* More generally, George L. Nemhauser and Laurence A. Wolsey's book Integer and Combinatorial Optimization, 1999, from Wiley-Interscience Series in Discrete Mathematics and Optimization, has a huge number of MIP references at the back.
+* Wolsey, Integer Programming, John Wiley & Sons 1998 [good fundamental branch & bound reference]
+
+
+**PRESOLVE**
+* Savelsbergh, M.W.P. (1994), Preprocessing and probing techniques for mixed integer programming problems. ORSA Journal on Computing, Volume 6, Number 4, pages 445-454.
+* Andersen, E.D. and Andersen, K.D. (1995), Presolving in linear programming. Mathematical Programming Volume 71, pages 221-245.
+* Brearley, A.L., Mitra, G., and Williams, H.P. (1975). Analysis of mathematical programming problems prior to applying the simplex algorithm. Mathematical Programming Volume 8, pages 54--83.
+
+
+**PROBING**
+*Savelsbergh, M.W.P. (1994). Preprocessing and Probing for Mixed Integer Programming Problems, ORSA Journal on Computing, Volume 6, pages 445-454.
+
+
+**PARALLEL**
+* For a discussion of the parallel simplex method, you can download this technical report:  
+CRPC-TR95706 Parallelizing the Dual Simplex Method, Robert E. Bixby, Alexander Martin, December 1995, Revised July 1997. Submitted November 1997.
+* Lustig, I.J. and Rothberg, E. (1996). "Gigaflops in Linear Programming", Operations Research Letters 18(4), 157-165.
+
+
+**QUADRATIC CONSTRAINTS**
+* E. D. Andersen, C. Roos, and T. Terlaky, On implementing a primal-dual interior-point method for conic quadratic optimization.
+
+Source: [IBM Support](https://www-304.ibm.com/support/docview.wss?uid=swg21400019)
