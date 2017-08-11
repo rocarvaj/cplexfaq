@@ -125,7 +125,7 @@ Tobias Acheterberg posts a very clarifying comment:
 
 
 **PROBING**
-*Savelsbergh, M.W.P. (1994). Preprocessing and Probing for Mixed Integer Programming Problems, ORSA Journal on Computing, Volume 6, pages 445-454.
+* Savelsbergh, M.W.P. (1994). Preprocessing and Probing for Mixed Integer Programming Problems, ORSA Journal on Computing, Volume 6, pages 445-454.
 
 
 **PARALLEL**
