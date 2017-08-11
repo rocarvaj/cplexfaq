@@ -13,6 +13,7 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 5. [How to perform customized strong branching?](#how-to-perform-customized-strong-branching)
 6. [How are pseudocosts initialized in CPLEX?](#how-are-pseudocosts-initialized-in-cplex)
 7. [Deterministic behavior of CPLEX: ticks or seconds?](#deterministic-behavior-of-cplex-ticks-or-seconds)
+8. [Is there a book that describes the algorithms CPLEX uses?](#is-there-a-book-that-describes-the-algorithms-cplex-uses)
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
