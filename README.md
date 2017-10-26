@@ -139,7 +139,7 @@ CRPC-TR95706 Parallelizing the Dual Simplex Method, Robert E. Bixby, Alexander M
 
 Source: [IBM Support](https://www-304.ibm.com/support/docview.wss?uid=swg21400019)
 
-**What's the meaning of deterministic ticks when using multithreading?**
+### What's the meaning of deterministic ticks when using multithreading?
 From [this](https://www.ibm.com/developerworks/community/forums/html/topic?id=ca9f010c-dab6-4ea0-aa1b-89a4e9e1b68b) I understand that every thread has its own internal tick counter.
 
 Reasonable assumption for the meaning of `CPXgetdettime` could be:
