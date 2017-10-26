@@ -149,3 +149,5 @@ Reasonable assumption for the meaning of `CPXgetdettime` could be:
 2. Max of those counters
 
 **A:** Similar to wallclock time, deterministic time is the max of the thread's deterministic time.
+
+Source: [CPLEX forum](https://www.ibm.com/developerworks/community/forums/html/topic?id=a5f6c63f-efb3-4116-a16c-9e386caf3fda&ps=25)
