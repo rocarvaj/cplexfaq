@@ -14,7 +14,8 @@ Do you have anything to add? Send me an [email](http://rocarvaj.uai.cl).
 6. [How are pseudocosts initialized in CPLEX?](#how-are-pseudocosts-initialized-in-cplex)
 7. [Deterministic behavior of CPLEX: ticks or seconds?](#deterministic-behavior-of-cplex-ticks-or-seconds)
 8. [Is there a book that describes the algorithms CPLEX uses?](#is-there-a-book-that-describes-the-algorithms-cplex-uses)
-9. [What's the meaning of deterministic ticks when using multithreading?](#whats-the-meaning-of-deterministic-ticks-when-using-multithreading)
+9. [What's the meaning of deterministic ticks when using multithreading?](#whats-the-meaning-of-deterministic-ticks-when-using-multithreading)]
+10. A list of my questions in the CPLEX forum.
 
 ### How to limit cut generation to root node only?
 **A:** Implement a cut callback function which does the following:
@@ -151,3 +152,7 @@ Reasonable assumption for the meaning of `CPXgetdettime` could be:
 **A:** Similar to wallclock time, deterministic time is the max of the thread's deterministic time.
 
 Source: [CPLEX forum](https://www.ibm.com/developerworks/community/forums/html/topic?id=a5f6c63f-efb3-4116-a16c-9e386caf3fda&ps=25)
+
+## A list of my questions in the CPLEX forum
+
+1. [[C callable] Problem getting presolved problem with CPLEX cuts](https://www.ibm.com/developerworks/community/forums/html/topic?id=77777777-0000-0000-0000-000014616196&ps=25).
